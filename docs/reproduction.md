@@ -4,7 +4,7 @@
 
 Offline code requires Python 3.9+ and the standard library. Python 3.9.6 is the tested interpreter. The historical venv has been removed from Git tracking while preserving existing local files. It contains platform-specific paths and packages; nothing in it was installed or executed.
 
-The optional OpenAI SDK remains pinned to 2.15.0, matching original package metadata. Its full dependency set is pinned in requirements-lock.txt, clean-installed on Python 3.9.6, and tested through an in-memory HTTP transport. Authenticated model access has not been tested.
+The optional OpenAI SDK remains pinned to 2.15.0, matching original package metadata. Its full dependency set is pinned in requirements-lock.txt, clean-installed on Python 3.9.6, and tested through an in-memory HTTP transport. The first authorized live pilot subsequently completed 80 calls using this environment; saved results are summarized in README.
 
 ## Preserve the baseline
 
@@ -66,3 +66,7 @@ Then implement isolated defense switches: memory-role/provenance separation, con
 ## Credential scan boundary
 
 A five-rule heuristic scan examined all 1,982 tracked blobs at the one reachable commit and returned no candidates. The observed repository has one branch and zero tags. Deleted/unreachable history and external copies are excluded; pattern scans cannot guarantee the absence of secrets. No credential validity checks were performed.
+
+## Saved first-pilot analysis
+
+The owner executed the first approved live pilot on October 30, 2026. It is complete; do not rerun the old command under its consumed approval. Keep results/pilot-live-001 unchanged. Use evaluation.score or evaluation.audit_pilot with new output paths for offline reanalysis. The raw dataset is preserved separately and is not yet part of the public repository. The schema/audit tests use synthetic fixtures; they do not count as additional empirical trials. See README for measured outcomes and limits.

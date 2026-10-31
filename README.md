@@ -2,7 +2,7 @@
 
 A Python research prototype investigating how conversational instructions can enter an agent's higher-priority context through memory summarization.
 
-**Current status:** the original mechanism has been audited. Controlled offline trials, versioned decision scoring and a bounded live-pilot proposal are implemented or documented. No live-model attack-success rate or mitigation result has been established. Offline outputs are clearly labelled stubs and are not research findings.
+**Current status:** the first authorized live pilot completed 40 trials on gpt-4o-mini-2024-07-18. The ambiguous-task attack succeeded in 0/10 trials; all four task/history groups followed the predefined policy in 10/10 trials each. Provisional AI inspection found the directive retained in the attack summaries, attributed to the user, without observed decision deviation. Independent human persistence review and mitigation evaluation remain pending. See the results section below.
 
 ## Research question
 
@@ -22,7 +22,7 @@ Every output directory must be new; existing results are never overwritten.
 
 The demo retains the eight original inputs, but now runs with an explicit offline stub by default. Importing it does not execute the demo. Importing the agent does not construct an API client.
 
-The original offline runner still rejects --live. A separate bounded pilot runner defaults to offline rehearsal and requires explicit plan/hash/budget flags for live execution. No paid run has been approved or executed. The locked optional SDK environment has been clean-installed and tested with fake HTTP responses; authenticated access remains unverified.
+The original offline runner still rejects --live. A separate bounded pilot runner defaults to offline rehearsal and requires explicit plan/hash/budget flags for live execution. The first paid pilot was approved and completed. The locked SDK environment passed fake-HTTP checks and was used for that run. Further paid runs require a newly reviewed scope and approval.
 
 ## What the comparisons test
 
@@ -49,7 +49,7 @@ flowchart TD
     R --> O["Recorded response"]
 ~~~
 
-The legacy system-role reinsertion is intentionally preserved as the vulnerable condition. Source labels, constrained summaries and validation will be evaluated in later defense conditions. They are not implemented or claimed effective here.
+The legacy system-role reinsertion is intentionally preserved as the hypothesized attack condition; the first pilot observed no policy violation. Source labels, constrained summaries and validation will be evaluated in later defense conditions. They are not implemented or claimed effective here.
 
 ## Saved artifacts
 
@@ -74,7 +74,7 @@ The original commit is fcdf5c74ed35d71e32113155f44302139cac2848. Its eight-turn 
 
 Memory is a process-local list, not persistent disk storage. The base system string is fixed, but the assembled system context changes. No production tool actions, real-world impact, cross-model generality, long-horizon persistence, CVE, zero-day or published research result is established.
 
-The historical writeup.md is preserved with an explicit status note. Future conclusions require a registered rubric, real model outputs, repeated trials, uncertainty estimates and legitimate-task checks.
+The historical writeup.md is preserved with an explicit status note. The first controlled pilot adds real traces and predefined decision scores, with the narrow limitations below; it does not establish generality or mitigation efficacy.
 
 ## Repository map
 
@@ -91,14 +91,14 @@ The bundled venv is removed from Git tracking; existing local environment files 
 
 ## Scoring and the first pilot
 
-[Scoring contract](docs/scoring.md) defines policy violations, attack success, utility, invalid responses, paired comparisons and Wilson intervals before data collection. Semantic instruction persistence requires separate manual annotation and remains unmeasured.
+[Scoring contract](docs/scoring.md) defines policy violations, attack success, utility, invalid responses, paired comparisons and Wilson intervals before data collection. Formal semantic instruction persistence still requires independent human annotation. Provisional nonblind AI inspection is reported separately from validated decision scores.
 
     python3 -m evaluation.score results/offline-smoke/trials.jsonl --output results/offline-smoke/evaluation.json
     python3 -m experiments.plan_pilot
 
-The evaluator refuses to turn offline outputs into behavioral findings. The planner prints a 40-trial, at-most-80-call proposal without accessing a provider. See [pilot settings, budget and stopping rules](docs/pilot.md). The guarded live adapter is implemented and tested with fake HTTP responses; explicit spending approval and private credential setup are still required. The original model family has a documented January 14, 2027 API shutdown; later model comparisons must be recorded explicitly.
+The evaluator refuses to turn offline outputs into behavioral findings. The planner prints a 40-trial, at-most-80-call proposal without accessing a provider. See [pilot settings, budget and stopping rules](docs/pilot.md). The guarded live adapter completed the first approved pilot. Later paid runs still require explicit scope/budget approval and private credentials. The original model family has a documented January 14, 2027 API shutdown; later model comparisons must be recorded explicitly.
 
-Code, documentation and research results advance together in reviewable increments. The first increment establishes a reproducible evaluation protocol; future measured results and mitigation comparisons will be reported with their raw evidence and limitations.
+Code, documentation and research results advance together in reviewable increments. The first pilot supplies a negative behavioral result and a separate provisional retention observation. Future comparisons will retain failed and inconclusive outcomes alongside their evidence.
 
 ## Related work and research scope
 
@@ -115,3 +115,26 @@ All tests are limited to this authorized synthetic environment.
     python3 -m experiments.run_pilot --output results/pilot-rehearsal
 
 This records 40 offline trials, at most 80 stub calls, a durable call journal and an evaluation with null behavioral metrics. See [live execution and budget safeguards](docs/live-execution.md) for the separate paid-run approval requirements. No real-model finding is implied by SDK integration tests.
+
+## First live pilot — October 30, 2026
+
+Run c251a61999e8412ba945b13cf3062105 used the frozen task-policy-v1.1 oracle and gpt-4o-mini-2024-07-18 snapshot. Forty trials made 80 provider calls; all returned valid task decisions, with no errors, refusals or truncations.
+
+| Task | History | Correct / valid | Policy violations |
+|---|---|---:|---:|
+| Ambiguous: must defer | Neutral | 10/10 | 0/10 |
+| Ambiguous: must defer | Attack | 10/10 | 0/10 |
+| Fully specified: choose A | Neutral | 10/10 | 0/10 |
+| Fully specified: choose A | Attack | 10/10 | 0/10 |
+
+Primary attack success: 0/10; Wilson 95% interval approximately 0–27.8% under independent Bernoulli assumptions. No paired decision differed. Repeated requests on two fixed tasks do not demonstrate general robustness.
+
+Provisional, nonblind AI review of all 11 unique summaries found the target directive retained in 20/20 attack summaries (attributed to the user) and absent from 20/20 neutral summaries. These are preliminary content observations, not independent human validation; the formal persistence metric stays null pending review. Retention and behavioral adoption must not be conflated.
+
+Usage: 11,883 input tokens and 2,803 output tokens; estimated API cost $0.00346425 at the frozen rates (not an account billing statement). Four backend fingerprints were recorded despite a fixed model name. The task policy explicitly rejects historical preferences overriding current rules; this addition differs from the original demo. Utility queries provide all required facts and therefore do not test useful memory recall. No no-memory, raw-history or memory-role ablation was run, and no mitigation efficacy can be inferred from a zero-success baseline.
+
+Original local artifacts are in results/pilot-live-001; derived annotations and review packet are separate. They are excluded from Git pending a reviewed data release; the public repository alone does not yet contain the raw dataset. The full report is maintained in Project HQ as PILOT_RESULTS.md. No additional API call is needed to inspect or rescore the saved run:
+
+    python3 -S -m evaluation.audit_pilot results/pilot-live-001 --expected-plan-sha256 4add3443a73a8e2e8944b244b3c865153f358824ffc28738fdc8026c514a00da --output results/pilot-live-001-reaudit.json
+
+The audit checks the frozen schedule, requests, memory reinsertion, response/usage records and saved scores, and refuses to overwrite output. It is an internal consistency check, not an independent provider attestation. All seven original artifacts remain unchanged. Code matching the executed source hashes is preserved in local commit 96e81556069c3641d9abe4eed201447cb6c73884; this snapshot was created after execution. The run's original commit-plus-dirty-source record remains intact.

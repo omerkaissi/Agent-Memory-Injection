@@ -1,6 +1,6 @@
-# First real-model pilot proposal
+# First real-model pilot: registered design and completion
 
-Prepared October 30, 2026. Paid execution is not authorized and no real model was called. The bounded runner is implemented; its default remains offline. Explicit reviewed plan/hash/budget flags are required to enable provider calls; see live-execution.md.
+Prepared and executed October 30, 2026 after explicit owner approval. Run c251a61999e8412ba945b13cf3062105 completed 40 trials / 80 calls; estimated usage cost $0.00346425. Ambiguous-task attack success was 0/10; see README results and PILOT_RESULTS.md in Project HQ. The registered settings and conservative reservation below describe the completed run. Further paid runs are not authorized by that completed approval.
 
 ## Question and scope
 
@@ -23,7 +23,7 @@ Keep fixed scripted assistant history and fresh agents. The ambiguous task expec
 
 ## Current availability and budget proposal
 
-Official [model documentation](https://developers.openai.com/api/docs/models/gpt-4o-mini) lists a 128,000-token context and standard text prices of $0.15 per million input tokens and $0.60 per million output tokens. Checked October 30, 2026. The [deprecation notice](https://developers.openai.com/api/docs/deprecations) schedules API removal on January 14, 2027. Account-level access is unverified. No automatic fallback is permitted; a model change requires a new recorded plan.
+Official [model documentation](https://developers.openai.com/api/docs/models/gpt-4o-mini) lists a 128,000-token context and standard text prices of $0.15 per million input tokens and $0.60 per million output tokens. Checked October 30, 2026. The [deprecation notice](https://developers.openai.com/api/docs/deprecations) schedules API removal on January 14, 2027. Account-level access to the snapshot succeeded for all 80 pilot calls; later availability is not guaranteed. No automatic fallback is permitted; a model change requires a new recorded plan.
 
 Reserve the cost of the entire 128,000-token context for every request plus its 256 output tokens. This is deliberately much larger than these short prompts; it avoids claiming an exact token estimate from character length. Do not subtract cached-input discounts or refund a reservation after a failed call.
 
@@ -32,7 +32,7 @@ Reserve the cost of the entire 128,000-token context for every request plus its 
     maximum 80-call reservation = $1.548288
     proposed owner-approved ceiling = $2.00
 
-These are conservative reservations at published rates, not measured costs or an account-wide billing cap. The reserve covers at most 10,240,000 input and 20,480 output tokens; actual token use should be substantially smaller but is unknown. The implemented adapter restricts the model/endpoint/settings, counts every attempt, disables SDK retries, reserves budget before dispatch and stops on missing or inconsistent usage. These controls have been tested with fakes and the clean installed SDK. This code's spending limit cannot cap unrelated activity in the provider account.
+These are conservative reservations at published rates, not measured costs or an account-wide billing cap. The reserve covers at most 10,240,000 input and 20,480 output tokens; actual pilot usage was 11,883 input and 2,803 output tokens. The implemented adapter restricts the model/endpoint/settings, counts every attempt, disables SDK retries, reserves budget before dispatch and stops on missing or inconsistent usage. These controls have been tested with fakes and the clean installed SDK. This code's spending limit cannot cap unrelated activity in the provider account.
 
 ## Stopping and data handling
 
@@ -44,4 +44,4 @@ Before calling the provider, record the frozen plan, source hashes and full sche
 
     python3 -m experiments.plan_pilot
 
-This prints the exact matrix, settings, calculation, source hashes and plan hash. It performs no provider calls, SDK import or credential lookup. The live adapter, clean dependency installation and budget-guard tests are complete locally. Explicit cost approval and private credential setup remain prerequisites.
+This prints the exact matrix, settings, calculation, source hashes and plan hash. It performs no provider calls, SDK import or credential lookup. The live adapter, clean dependency installation and budget-guard tests are complete locally. Explicit cost approval and private credential setup remain prerequisites for any future run; the first approved run is complete.

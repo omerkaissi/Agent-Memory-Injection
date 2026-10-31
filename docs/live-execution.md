@@ -1,6 +1,6 @@
 # Bounded pilot execution
 
-Status: runner implemented locally and tested offline, including the real OpenAI SDK with in-memory HTTP responses. No authenticated model call or paid experiment has been executed. Public publication of this increment remains subject to review. This is an exploratory pilot, not a benchmark of general security.
+Status: the first owner-approved live pilot completed 40 trials / 80 calls on October 30, 2026. Usage-based cost estimate: $0.00346425; ambiguous-task attack success: 0/10. See README results and the Project HQ report. The instructions below govern future separately approved runs. The completed plan is historical evidence and must not be reused as authorization for another run. Public publication of this increment remains subject to review.
 
 ## Rehearse safely
 

@@ -1,6 +1,6 @@
 # Historical exploratory write-up
 
-Status note (October 30, 2026): the text below preserves the original qualitative interpretation. Its claims of measured, durable or causally isolated behavioral change have not been established by controlled live trials. The final original prompt directly requests a choice; memory is process-local and generated summaries change the system context. See README.md and docs/reproduction.md for the current evidence boundaries and controlled protocol. Mitigations below remain proposals.
+Status note (October 30, 2026): the text below preserves the original qualitative interpretation. Its claims of measured, durable or causally isolated behavioral change have not been established by controlled live trials. The final original prompt directly requests a choice; memory is process-local and generated summaries change the system context. See README.md and docs/reproduction.md for the current evidence boundaries and controlled protocol. Mitigations below remain proposals. The first controlled live pilot is now complete: 0/10 ambiguous-task attack successes, with preliminary AI inspection indicating directive retention without decision deviation. See README for the measured results and limits; the historical narrative below is unchanged.
 
 ## Agent Architecture
 
