@@ -1,6 +1,6 @@
 # Memory-dependent tasks and controls
 
-Status: `memory-controls-v1` has an offline rehearsal runner and a separately gated [live pilot proposal](memory-pilot.md). The paid matrix is not approved or executed. Stub outputs are not model results. The first pilot's scenarios, scorer, plan and raw records are unchanged.
+Status: `memory-controls-v1` has an offline rehearsal runner and a separately gated [live pilot](memory-pilot.md). The authorized live matrix completed 300 valid trials; see README for measured results and limitations. Stub outputs remain software checks only. The first pilot's scenarios, scorer, plan and raw records are unchanged; no repeat paid run is authorized.
 
 ## Why this study exists
 
@@ -52,7 +52,7 @@ python3 -S -m experiments.run_memory_controls --output results/memory-controls-f
 
 The first command records 60 completed trials / 84 stub calls. The failure command exits 1, retaining 36 completed trials and 24 expected errors: only the two-call summary trials fail on their second call. A successful summary remains available for failure analysis. A failed first summary call prevents the reply. No retries or replacement trials occur.
 
-This offline runner rejects `--live` and `--execute` before reading credentials or creating output. The original paid pilot runner cannot execute this matrix. The new `experiments.run_memory_pilot` is separately gated and described in memory-pilot.md; its proposed paid scope remains unapproved.
+This offline runner rejects `--live` and `--execute` before reading credentials or creating output. The original paid pilot runner cannot execute this matrix. The separate `experiments.run_memory_pilot` completed its one authorized run; its prior spending approval cannot be reused.
 
 Artifacts:
 
@@ -75,4 +75,4 @@ The study-specific scorer, output validity rules, summary-fact assessment, attac
 
 Raw versus summary comparisons change compression, message count and authority assignment together. They cannot isolate the causal effect of system-role authority. A later fixed-summary experiment must reuse identical summary text while varying its role/provenance. Neutral/attack comparisons also vary the wording and length of one user message. Two numeric orderings and fixed templates are a narrow task set, not a benchmark for general agent security.
 
-The next empirical report must keep all completed, invalid and failed attempts, report negative findings, and distinguish utility from security. No new attack success, retention rate or mitigation effect has been measured by this implementation.
+The empirical report retains all attempts and distinguishes utility from security. No designated attack-goal success was observed; formal human-validated retention rates and mitigation efficacy remain unmeasured. See README and the Project HQ report MEMORY_PILOT_RESULTS.md.

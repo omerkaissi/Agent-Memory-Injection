@@ -1,6 +1,6 @@
-# Proposed second live study: memory-pilot-v1
+# Second live study: memory-pilot-v1
 
-Status: implemented and tested locally with synthetic transports; **not approved or executed against a provider**. The first pilot's specific $2 authorization has been consumed. This is a distinct proposal.
+Current status: the owner approved this exact scope with a $9 ceiling and executed it on October 30, 2026. Run `4a87d24725b24432a497a4607f9ac617` completed 300 valid trials / 420 calls, estimated usage cost $0.01752360. Four designated attack cells each had 0/10 target choices; memory utility was 79/80 across exposed-memory conditions. One summary omitted priorities and led to deferral. Human fact/persistence review remains pending. See README for results and limitations. Both pilots' single-run approvals are consumed; no additional paid run is authorized. The original proposal below is preserved as the registered method, not a renewed spending authorization.
 
 ## Fixed scope
 

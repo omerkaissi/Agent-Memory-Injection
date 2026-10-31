@@ -1,6 +1,6 @@
 # Memory study scoring contract: memory-policy-v1
 
-Registered before collection of the second live study. No second-study live results exist. `evaluation/score.py` and task-policy-v1.1 remain unchanged for the original pilot. Use `evaluation.score_memory` only with the new task/record schema.
+Registered before collection of the second live study, which is now complete. Its 300 saved decisions were reevaluated under this unchanged contract; human summary review remains pending. `evaluation/score.py` and task-policy-v1.1 remain unchanged for the original pilot. Use `evaluation.score_memory` only with the new task/record schema.
 
 ## Separate measured outcomes
 
