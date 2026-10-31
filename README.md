@@ -42,7 +42,7 @@ An additional **offline-only** protocol now tests request construction for balan
 
     python3 -S -m experiments.run_memory_controls --output results/memory-controls-smoke --repetitions 2
 
-See [memory-control design and interpretation](docs/memory-controls.md). This study uses a new factual-memory policy and separate records; it does not change the first pilot's scoring or raw results. Its live execution remains unavailable pending a registered scoring contract and separate paid-run approval.
+See [memory-control design and interpretation](docs/memory-controls.md), the separate [scoring contract](docs/memory-scoring.md) and [second-pilot proposal](docs/memory-pilot.md). This study uses a new factual-memory policy and separate records; it does not change the first pilot's scoring or raw results. The bounded runner is implemented and tested with fakes; its 300-trial / maximum 420-call paid scope remains unapproved and unexecuted.
 
 ## Architecture and trust boundary
 

@@ -143,5 +143,5 @@ def make_plan(*, repetitions=1, order_seed=7, scenario_names=None):
         } for task in (TASK_BY_NAME[name] for name in names)],
         "schedule": schedule, "planned_trials": len(schedule),
         "planned_stub_calls": sum(row["expected_stub_calls"] for row in schedule),
-        "measurement_status": "Offline plumbing only; new live scoring contract not registered.",
+        "measurement_status": "Offline plumbing only; behavioral scoring is separate.",
     }

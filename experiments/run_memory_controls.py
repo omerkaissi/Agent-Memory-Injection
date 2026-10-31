@@ -9,7 +9,7 @@ from pathlib import Path
 import sys
 import uuid
 
-from agent import SimpleAgent, digest
+from agent import CompletionFailed, SimpleAgent, digest
 from experiments.memory_controls import (
     CONDITIONS, GENERATION_SETTINGS, MEMORY_POLICY, REQUESTED_MODEL, STUDY_VERSION,
     TASK_BY_NAME, fixed_history, make_plan,
@@ -23,17 +23,17 @@ def validate_failure(fail_on_call):
         raise ValueError("fail_on_call must be a positive integer")
 
 
-def run_trial(entry, *, run_id, fail_on_call=None):
-    validate_failure(fail_on_call)
+def trial_config(entry, *, mode="offline", fail_on_call=None):
+    if mode not in ("offline", "live"):
+        raise ValueError("Unknown data mode")
     task = TASK_BY_NAME[entry["scenario"]]
     protocol, arm = entry["protocol"], entry["arm"]
     if (protocol, arm) not in CONDITIONS:
         raise ValueError("Unknown protocol/arm combination")
-    client = OfflineClient(fail_on_call=fail_on_call)
     # A seven-message raw history plus one query must not trigger automatic compression.
     responder_limit = 8 if protocol == "raw" else 6
-    config = {
-        "study_version": STUDY_VERSION, "mode": "offline", **copy.deepcopy(entry),
+    return {
+        "study_version": STUDY_VERSION, "mode": mode, **copy.deepcopy(entry),
         "system_prompt": MEMORY_POLICY, "heldout_query": task.query,
         "requested_model": REQUESTED_MODEL, "generation_settings": dict(GENERATION_SETTINGS),
         "model_seed": None, "responder_max_memory_messages": responder_limit,
@@ -41,9 +41,14 @@ def run_trial(entry, *, run_id, fail_on_call=None):
         "summary_role": "system" if protocol == "summary" else None,
         "mitigation": "none", "synthetic_data_only": True, "fail_on_call": fail_on_call,
     }
+
+
+def empty_record(entry, *, run_id, mode="offline", fail_on_call=None):
+    config = trial_config(entry, mode=mode, fail_on_call=fail_on_call)
+    task = TASK_BY_NAME[entry["scenario"]]
     record = {
-        "schema_version": "memory-controls-offline-1", "run_id": run_id,
-        **copy.deepcopy(entry), "mode": "offline", "config": config,
+        "schema_version": f"memory-controls-{mode}-1", "run_id": run_id,
+        **copy.deepcopy(entry), "mode": mode, "config": config,
         "config_sha256": digest(config), "purpose": task.purpose,
         "reference_outcome": task.reference_outcome,
         "no_memory_expected": task.no_memory_expected,
@@ -52,8 +57,20 @@ def run_trial(entry, *, run_id, fail_on_call=None):
         "responder_initial_memory": None, "events": [], "stub_calls": 0,
         "provider_calls": 0, "api_cost_incurred_usd": 0.0,
         "evaluated": False, "behavioral_metrics": None,
-        "evaluation_note": "Stub text is not model evidence. Reference outcomes describe input facts only.",
+        "evaluation_note": "Score separately. Offline text is never model evidence; reference outcomes describe input facts.",
     }
+    return record
+
+
+def execute_trial(record, client):
+    """Shared protocol; transport/approval gates belong to the calling runner."""
+    config = record["config"]
+    task = TASK_BY_NAME[config["scenario"]]
+    protocol, arm = config["protocol"], config["arm"]
+    live = record["mode"] == "live"
+    if live and getattr(client, "offline_only", False):
+        raise ValueError("Offline client cannot produce live records")
+    before_calls = getattr(client, "dispatched", getattr(client, "calls", 0))
     summarizer = responder = None
     try:
         memory = [] if protocol == "none" else fixed_history(task, arm)
@@ -65,15 +82,28 @@ def run_trial(entry, *, run_id, fail_on_call=None):
             summarizer.summarize_memory()
             memory = copy.deepcopy(summarizer.memory)
             record["post_summary_memory"] = copy.deepcopy(memory)
+            event = summarizer.events[0]
+            if live and (event["finish_reason"] != "stop" or event["refusal"]):
+                record["status"] = "invalid"
+                return record
         responder = SimpleAgent(client=client, model=REQUESTED_MODEL,
-                                system_prompt=MEMORY_POLICY, max_memory=responder_limit,
+                                system_prompt=MEMORY_POLICY, max_memory=config["responder_max_memory_messages"],
                                 generation_settings=GENERATION_SETTINGS)
         responder.memory = copy.deepcopy(memory)
         record["responder_initial_memory"] = copy.deepcopy(memory)
         record["observed_outcome"] = responder.chat(task.query)
-        record["status"] = "completed"
+        event = responder.events[-1]
+        record["status"] = ("invalid" if live and
+                            (event["finish_reason"] != "stop" or event["refusal"]) else "completed")
+    except (KeyboardInterrupt, SystemExit):
+        if not live:
+            raise
+        record.update(status="error", error_type="Interrupted")
+        client.halted = True
     except Exception as error:
-        record["status"] = "error"
+        if live and not isinstance(error, CompletionFailed):
+            client.halted = True
+        record["status"] = "invalid" if live and not client.halted else "error"
         record["error_type"] = type(error).__name__
     finally:
         record["events"] = [
@@ -81,8 +111,16 @@ def run_trial(entry, *, run_id, fail_on_call=None):
         ] + [
             {"phase": "responder", **event} for event in (responder.events if responder else [])
         ]
-        record["stub_calls"] = client.calls
+        calls = getattr(client, "dispatched", getattr(client, "calls", 0)) - before_calls
+        record["provider_calls" if live else "stub_calls"] = calls
+        record["api_cost_incurred_usd"] = None if live else 0.0
     return record
+
+
+def run_trial(entry, *, run_id, fail_on_call=None):
+    validate_failure(fail_on_call)
+    record = empty_record(entry, run_id=run_id, fail_on_call=fail_on_call)
+    return execute_trial(record, OfflineClient(fail_on_call=fail_on_call))
 
 
 def write_json(path, value):

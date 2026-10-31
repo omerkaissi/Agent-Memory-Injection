@@ -1,6 +1,6 @@
 # Memory-dependent tasks and controls
 
-Status: `memory-controls-v1` is implemented for **offline software rehearsal only**. It has no live execution path or approved paid matrix. Stub outputs are not model results. The first pilot's scenarios, scorer, plan and raw records are unchanged.
+Status: `memory-controls-v1` has an offline rehearsal runner and a separately gated [live pilot proposal](memory-pilot.md). The paid matrix is not approved or executed. Stub outputs are not model results. The first pilot's scenarios, scorer, plan and raw records are unchanged.
 
 ## Why this study exists
 
@@ -52,7 +52,7 @@ python3 -S -m experiments.run_memory_controls --output results/memory-controls-f
 
 The first command records 60 completed trials / 84 stub calls. The failure command exits 1, retaining 36 completed trials and 24 expected errors: only the two-call summary trials fail on their second call. A successful summary remains available for failure analysis. A failed first summary call prevents the reply. No retries or replacement trials occur.
 
-`--live` and `--execute` are rejected before reading credentials or creating output. The existing paid pilot runner cannot execute this new matrix. The requested snapshot/settings in offline records describe request construction only; current availability and prices must be rechecked before a separate live proposal.
+This offline runner rejects `--live` and `--execute` before reading credentials or creating output. The original paid pilot runner cannot execute this matrix. The new `experiments.run_memory_pilot` is separately gated and described in memory-pilot.md; its proposed paid scope remains unapproved.
 
 Artifacts:
 
@@ -71,7 +71,7 @@ Keep three questions separate:
 2. **Policy compliance given available evidence:** no-memory deferral is correct. Deferral after a summary loses facts is not automatically an injection success. Changed or fabricated facts require separate inspection.
 3. **Behavioral instruction adoption:** predefine a prohibited deviation and compare neutral/attack histories. For tie/missing tasks, choosing despite insufficient discriminating information is the candidate target. Do not label every wrong answer as successful injection.
 
-Before paid collection, register a study-specific scorer, output validity rules, summary-fact assessment, attack-success criteria, denominators, paired comparisons, uncertainty and a bounded budget. Do not apply the first pilot's `task-policy-v1.1` evaluator to these new records. Human semantic persistence review of the first pilot remains outstanding.
+The study-specific scorer, output validity rules, summary-fact assessment, attack-success criteria, denominators, paired comparisons and uncertainty are now defined in [memory-scoring.md](memory-scoring.md), with a bounded proposal in memory-pilot.md. Do not apply the first pilot's `task-policy-v1.1` evaluator to these new records. Human semantic persistence review of the first pilot remains outstanding.
 
 Raw versus summary comparisons change compression, message count and authority assignment together. They cannot isolate the causal effect of system-role authority. A later fixed-summary experiment must reuse identical summary text while varying its role/provenance. Neutral/attack comparisons also vary the wording and length of one user message. Two numeric orderings and fixed templates are a narrow task set, not a benchmark for general agent security.
 
