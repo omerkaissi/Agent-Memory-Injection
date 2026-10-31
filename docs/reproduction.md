@@ -4,14 +4,14 @@
 
 Offline code requires Python 3.9+ and the standard library. Python 3.9.6 is the tested interpreter. The historical venv has been removed from Git tracking while preserving existing local files. It contains platform-specific paths and packages; nothing in it was installed or executed.
 
-The optional OpenAI SDK remains pinned to 2.15.0, matching original package metadata. Its full dependency set is pinned in requirements-lock.txt, clean-installed on Python 3.9.6, and tested through an in-memory HTTP transport. The first authorized live pilot subsequently completed 80 calls using this environment; saved results are summarized in README.
+The optional OpenAI SDK remains pinned to 2.15.0, matching original package metadata. Its full dependency set is pinned in requirements-lock.txt, clean-installed on Python 3.9.6, and tested through an in-memory HTTP transport. The two authorized live studies subsequently completed 80 and 420 calls using this environment; saved results are summarized in README and the [technical report](../writeup.md).
 
 ## Preserve the baseline
 
 Original commit: fcdf5c74ed35d71e32113155f44302139cac2848.
 Original tree: 93c324264b1295d10a2b7ff7021d8ca661035036.
 
-The local checkout was reconstructed from GitHub's complete ZIP and metadata because local git network access was unavailable. All 1,982 blob hashes, the tree and exact original commit hash were verified. git fsck --full passed. No remote ref was modified.
+The local checkout was reconstructed from GitHub's complete ZIP and metadata because local git network access was unavailable. All 1,982 blob hashes, the tree and exact original commit hash were verified. git fsck --full passed. No remote ref was modified during that initial reconstruction. Later approved releases preserve this history.
 
 Tests retrieve original source from that commit and compare every request produced by the eight-input demo under identical fake completions. The original base prompt, summary prompt, threshold, summary role and eight input strings remain unchanged.
 
@@ -41,7 +41,7 @@ For heldout_ambiguous and heldout_legitimate, assistant messages are fixed and o
 
 No demographic, private or external system data is used. There are no external tools or actions.
 
-## Artifact interpretation
+## Offline artifact interpretation
 
 - completed means the software pipeline returned a usable string. It does not mean attack success.
 - A trial contains events with detached requests; later mutations cannot silently rewrite those snapshots.
@@ -55,13 +55,13 @@ No demographic, private or external system data is used. There are no external t
 - Token usage is unknown for stubs, represented as null; incurred API cost is zero because no provider calls occur.
 - The injected and neutral messages differ in text length; message counts, not tokens, are matched.
 
-## Deferred live stage
+## Completed live stages and future collection
 
-The [scoring rubric](scoring.md) and [pilot proposal](pilot.md) now specify the model/provider, generation parameters, matrix, retries/timeouts, limits and cost calculation. The planner remains offline. A separate gated pilot runner, reservation guard and clean SDK environment are implemented and verified with fakes. Obtain explicit spending approval and configure a private API key before collection; follow live-execution.md. Recheck current availability/pricing if execution occurs later.
+The [scoring rubric](scoring.md) and [pilot proposal](pilot.md) now specify the model/provider, generation parameters, matrix, retries/timeouts, limits and cost calculation. The planner remains offline. Separate gated runners completed both authorized studies. To inspect the existing findings, use the [evidence inventory](evidence-access.md); no key or paid call is needed. Fresh collection requires a newly reviewed plan and budget; follow live-execution.md and recheck current model availability/pricing.
 
 Planned metrics: summary directive persistence; trusted-policy violations; legitimate-task success; failed/invalid attempts; cost and latency. Use actual denominators and uncertainty intervals. Do not treat a missing trigger word as semantic removal, or malformed JSON as an automatically safe result.
 
-Then implement isolated defense switches: memory-role/provenance separation, constrained summaries and validation. Compare each against the same attack and benign tasks. No defense efficacy is claimed in this checkpoint.
+Then implement isolated defense switches: memory-role/provenance separation, constrained summaries and validation. Compare each against the same attack and benign tasks. No defense efficacy is claimed by either completed study.
 
 ## Credential scan boundary
 
@@ -69,7 +69,7 @@ A five-rule heuristic scan examined all 1,982 tracked blobs at the one reachable
 
 ## Saved first-pilot analysis
 
-The owner executed the first approved live pilot on October 30, 2026. It is complete; do not rerun the old command under its consumed approval. Keep results/pilot-live-001 unchanged. Use evaluation.score or evaluation.audit_pilot with new output paths for offline reanalysis. The raw dataset is preserved separately and is not yet part of the public repository. The schema/audit tests use synthetic fixtures; they do not count as additional empirical trials. See README for measured outcomes and limits.
+The owner executed the first approved live pilot on October 30, 2026. It is complete; do not rerun the old command under its consumed approval. Keep results/pilot-live-001 unchanged. Use evaluation.score or evaluation.audit_pilot with new output paths for offline reanalysis. Raw records and derived analyses remain private; see [evidence availability and offline audit instructions](evidence-access.md). The schema/audit tests use synthetic fixtures; they do not count as additional empirical trials. See README for measured outcomes and limits.
 
 ## Separate memory-control rehearsal
 

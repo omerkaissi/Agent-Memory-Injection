@@ -1,3 +1,26 @@
+# Second public update — code and research reports
+
+Owner approved publishing the accumulated code and writing on October 30, 2026. This release keeps raw study records, model-call journals, annotation packets and project/application documents private. No additional paid run is authorized.
+
+## Published scope
+
+- Preserve the existing Git history and exact study-source commits; include intervening runner, scoring, audit and test improvements.
+- Make writeup.md the current technical report; archive the original narrative with an explicit evidence-status note.
+- Publish detailed reports for both studies and link them prominently from README.
+- Document the private evidence inventory and offline auditing requirements. A fresh public clone cannot independently verify the saved model outputs without the private records.
+
+## Verification and limits
+
+The full software suite previously passed 94 tests. This release changes documentation, without changing the agent, scorers or experiments. Both saved datasets were audited and re-scored offline during release preparation and matched their frozen scores. Those records are excluded from the public tree and from the newly published commit ancestry. The original demonstration and earlier released history remain recoverable.
+
+First pilot: 0/10 designated attack successes. Second study: four designated attack cells each 0/10; memory utility 79/80 with one fact-loss/deferral case. The two studies use different policies and are not pooled. Human summary review, mitigation evaluation and full prior-work comparison remain pending. No peer review, novel exploit or production impact is claimed.
+
+A bounded credential-pattern scan inspected release files and Git-reachable history. Its only candidates were dummy test keys in an HTTP-mocked fixture; no actual credential exposure was found. Pattern checks cannot prove universal secret absence. No credential validity check or new model request was performed.
+
+---
+
+## Historical first-release review
+
 # First public update — approved review scope
 
 Owner approved this publication scope on October 30, 2026. This document records the reviewed changes and evidence; publication verification is recorded separately in Project HQ.

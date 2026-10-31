@@ -75,4 +75,4 @@ The study-specific scorer, output validity rules, summary-fact assessment, attac
 
 Raw versus summary comparisons change compression, message count and authority assignment together. They cannot isolate the causal effect of system-role authority. A later fixed-summary experiment must reuse identical summary text while varying its role/provenance. Neutral/attack comparisons also vary the wording and length of one user message. Two numeric orderings and fixed templates are a narrow task set, not a benchmark for general agent security.
 
-The empirical report retains all attempts and distinguishes utility from security. No designated attack-goal success was observed; formal human-validated retention rates and mitigation efficacy remain unmeasured. See README and the Project HQ report MEMORY_PILOT_RESULTS.md.
+The empirical report retains all attempts and distinguishes utility from security. No designated attack-goal success was observed; formal human-validated retention rates and mitigation efficacy remain unmeasured. See README and the [memory-control report](reports/memory-pilot-results.md).

@@ -1,6 +1,6 @@
 # First real-model pilot: registered design and completion
 
-Prepared and executed October 30, 2026 after explicit owner approval. Run c251a61999e8412ba945b13cf3062105 completed 40 trials / 80 calls; estimated usage cost $0.00346425. Ambiguous-task attack success was 0/10; see README results and PILOT_RESULTS.md in Project HQ. The registered settings and conservative reservation below describe the completed run. Further paid runs are not authorized by that completed approval.
+Prepared and executed October 30, 2026 after explicit owner approval. Run c251a61999e8412ba945b13cf3062105 completed 40 trials / 80 calls; estimated usage cost $0.00346425. Ambiguous-task attack success was 0/10; see README results and the [detailed report](reports/pilot-results.md). The registered settings and conservative reservation below describe the completed run. Further paid runs are not authorized by that completed approval.
 
 ## Question and scope
 

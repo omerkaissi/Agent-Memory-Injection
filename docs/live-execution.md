@@ -1,6 +1,6 @@
 # Bounded pilot execution
 
-Status: the first owner-approved live pilot completed 40 trials / 80 calls on October 30, 2026. Usage-based cost estimate: $0.00346425; ambiguous-task attack success: 0/10. See README results and the Project HQ report. The instructions below govern future separately approved runs. The completed plan is historical evidence and must not be reused as authorization for another run. Public publication of this increment remains subject to review.
+Status: the first owner-approved live pilot completed 40 trials / 80 calls on October 30, 2026. Usage-based cost estimate: $0.00346425; ambiguous-task attack success: 0/10. See README results and the [first-pilot report](reports/pilot-results.md). The instructions below govern future separately approved runs. The completed plan is historical evidence and must not be reused as authorization for another run. Both studies now have published reports and an [evidence inventory](evidence-access.md); raw records remain private. Publication does not authorize new paid calls.
 
 ## Rehearse safely
 

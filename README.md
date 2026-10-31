@@ -4,6 +4,8 @@ A Python research prototype investigating how conversational instructions can en
 
 **Current status:** two authorized live studies are complete. The second recorded 300 valid trials / 420 calls: no target-choice successes in four designated attack cells (0/10 each), and 79/80 correct answers on exposed-memory utility tasks. One attack-summary trial lost numerical facts and deferred. This is a utility failure, not a successful attack under the registered endpoint. Human summary review and mitigation evaluation remain pending. See the separate study results below; do not pool the two studies as one condition.
 
+**Read the [technical write-up](writeup.md)** · [first-pilot report](docs/reports/pilot-results.md) · [memory-control report](docs/reports/memory-pilot-results.md) · [evidence availability](docs/evidence-access.md)
+
 ## Research question
 
 Under what conditions do lower-trust instructions survive conversation summarization, affect subsequent policy-constrained decisions, and resist mitigation?
@@ -62,6 +64,7 @@ The legacy system-role reinsertion is intentionally preserved as the hypothesize
 ## Saved artifacts
 
 Each run creates:
+
 - manifest.json — planned trials, randomized-order seed, source fingerprints and run status.
 - trials.jsonl — one record per attempted trial, including errors; configuration, full synthetic requests, memory before/after, responses and timing.
 - summary.json — completed/error counts by scenario and arm.
@@ -80,9 +83,9 @@ The command exits with status 1 and retains all six failed attempts. An expected
 
 The original commit is fcdf5c74ed35d71e32113155f44302139cac2848. Its eight-turn script summarizes on turns four and seven. The final input directly asks the agent to choose; that confounds the original claim that injected memory alone caused the behavior.
 
-Memory is a process-local list, not persistent disk storage. The base system string is fixed, but the assembled system context changes. No production tool actions, real-world impact, cross-model generality, long-horizon persistence, CVE, zero-day or published research result is established.
+Memory is a process-local list, not persistent disk storage. The base system string is fixed, but the assembled system context changes. No production tool actions, real-world impact, cross-model generality, long-horizon persistence, CVE or zero-day is established. The published results are exploratory and not peer reviewed.
 
-The historical writeup.md is preserved with an explicit status note. The first controlled pilot adds real traces and predefined decision scores, with the narrow limitations below; it does not establish generality or mitigation efficacy.
+The [original narrative](docs/archive/original-writeup.md) is archived with its evidence limits. The current [writeup.md](writeup.md) presents the measured research. The first controlled pilot adds real traces and predefined decision scores, with the narrow limitations below; it does not establish generality or mitigation efficacy.
 
 ## Repository map
 
@@ -141,11 +144,11 @@ Provisional, nonblind AI review of all 11 unique summaries found the target dire
 
 Usage: 11,883 input tokens and 2,803 output tokens; estimated API cost $0.00346425 at the frozen rates (not an account billing statement). Four backend fingerprints were recorded despite a fixed model name. The task policy explicitly rejects historical preferences overriding current rules; this addition differs from the original demo. Utility queries provide all required facts and therefore do not test useful memory recall. No no-memory, raw-history or memory-role ablation was run, and no mitigation efficacy can be inferred from a zero-success baseline.
 
-Original local artifacts are in results/pilot-live-001; derived annotations and review packet are separate. They are excluded from Git pending a reviewed data release; the public repository alone does not yet contain the raw dataset. The full report is maintained in Project HQ as PILOT_RESULTS.md. No additional API call is needed to inspect or rescore the saved run:
+The original artifacts and review materials are preserved privately, separate from this public code and [detailed report](docs/reports/pilot-results.md). See [evidence availability](docs/evidence-access.md). The audit below is for a local checkout containing the original `results/pilot-live-001` directory; a fresh public clone does not contain those records. Its output filename must be new:
 
     python3 -S -m evaluation.audit_pilot results/pilot-live-001 --expected-plan-sha256 4add3443a73a8e2e8944b244b3c865153f358824ffc28738fdc8026c514a00da --output results/pilot-live-001-reaudit.json
 
-The audit checks the frozen schedule, requests, memory reinsertion, response/usage records and saved scores, and refuses to overwrite output. It is an internal consistency check, not an independent provider attestation. All seven original artifacts remain unchanged. Code matching the executed source hashes is preserved in local commit 96e81556069c3641d9abe4eed201447cb6c73884; this snapshot was created after execution. The run's original commit-plus-dirty-source record remains intact.
+The audit checks the frozen schedule, requests, memory reinsertion, response/usage records and saved scores, and refuses to overwrite output. It is an internal consistency check, not an independent provider attestation. All seven original artifacts remain unchanged. Code matching the executed source hashes is preserved in commit 96e81556069c3641d9abe4eed201447cb6c73884; this snapshot was created after execution. The run's original commit-plus-dirty-source record remains intact.
 
 ## Second live study — October 30, 2026
 
@@ -176,7 +179,7 @@ Human review is still pending for 35 unique texts covering 120 summaries. Formal
 
 Usage: 77,156 input + 9,917 output tokens; estimated cost $0.01752360 (about 1.75 cents), not an account billing statement. The $8.128512 reservation was not a measured charge. Seven backend fingerprints were recorded. Calls ran approximately 6:54:15–6:59:52 PM Pacific.
 
-All seven raw files remain unchanged in `results/memory-live-001`. Separate analysis and a blank human-review packet are in `results/memory-live-001-analysis`; the Project HQ report is `MEMORY_PILOT_RESULTS.md`. Data remain excluded from Git pending a reviewed release. The completed run consumes its single-run approval; do not rerun it automatically.
+The seven raw files, separate analysis and blank human review packet remain private and unchanged. This release publishes the [detailed report](docs/reports/memory-pilot-results.md), code and [evidence inventory](docs/evidence-access.md). The completed run consumes its single-run approval; do not rerun it automatically. The following offline audit requires the saved local run directory and a new output filename:
 
     python3 -S -m evaluation.audit_memory results/memory-live-001 --expected-plan-sha256 9500439baf60d5d1681bcf116371715a37299210fcc04c98ca0975ee7162b8d9 --output results/memory-live-001-reaudit.json
 
