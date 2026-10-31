@@ -34,7 +34,7 @@ def digest(value):
 class SimpleAgent:
     def __init__(self, client=None, model=DEFAULT_MODEL, *,
                  system_prompt=BASE_SYSTEM_PROMPT, max_memory=MAX_MEMORY,
-                 verbose=False):
+                 verbose=False, generation_settings=None):
         if not isinstance(max_memory, int) or max_memory < 1:
             raise ValueError("max_memory must be a positive integer")
         self.client = client
@@ -42,6 +42,12 @@ class SimpleAgent:
         self.system_prompt = system_prompt
         self.max_memory = max_memory
         self.verbose = verbose
+        settings = copy.deepcopy(generation_settings or {})
+        allowed = {"temperature", "top_p", "max_completion_tokens", "presence_penalty",
+                   "frequency_penalty", "n", "stream", "store"}
+        if not isinstance(settings, dict) or set(settings) - allowed:
+            raise ValueError("Unsupported generation setting")
+        self.generation_settings = settings
         self.memory = []
         self.turn = 0
         self._events = []
@@ -52,7 +58,8 @@ class SimpleAgent:
         return copy.deepcopy(self._events)
 
     def _complete(self, kind, messages):
-        request = {"model": self.model, "messages": copy.deepcopy(messages)}
+        request = {"model": self.model, "messages": copy.deepcopy(messages),
+                   **copy.deepcopy(self.generation_settings)}
         event = {
             "kind": kind, "turn": self.turn, "status": "pending",
             "request": copy.deepcopy(request), "request_sha256": digest(request),
@@ -70,8 +77,6 @@ class SimpleAgent:
             event["refusal"] = getattr(response.choices[0].message, "refusal", None)
             event["system_fingerprint"] = getattr(response, "system_fingerprint", None)
             text = response.choices[0].message.content
-            if not isinstance(text, str) or not text.strip():
-                raise ValueError("Completion must contain nonempty text")
             event["returned_model"] = getattr(response, "model", None)
             usage = getattr(response, "usage", None)
             if usage is not None:
@@ -80,6 +85,8 @@ class SimpleAgent:
                     for key in ("prompt_tokens", "completion_tokens", "total_tokens")
                 }
             event["response_text"] = text
+            if not isinstance(text, str) or not text.strip():
+                raise ValueError("Completion must contain nonempty text")
             event["status"] = "completed"
             return text
         except Exception as error:

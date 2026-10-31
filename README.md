@@ -22,7 +22,7 @@ Every output directory must be new; existing results are never overwritten.
 
 The demo retains the eight original inputs, but now runs with an explicit offline stub by default. Importing it does not execute the demo. Importing the agent does not construct an API client.
 
-Live CLI execution is disabled in this checkpoint. The --live flag fails before creating output. No paid run has been approved or executed. The optional requirements.txt records the SDK version found in the original environment; a clean live installation remains unverified.
+The original offline runner still rejects --live. A separate bounded pilot runner defaults to offline rehearsal and requires explicit plan/hash/budget flags for live execution. No paid run has been approved or executed. The locked optional SDK environment has been clean-installed and tested with fake HTTP responses; authenticated access remains unverified.
 
 ## What the comparisons test
 
@@ -83,7 +83,9 @@ The historical writeup.md is preserved with an explicit status note. Future conc
 - experiments/ — controlled scenarios, offline transport and JSONL runner.
 - tests/ — contract, isolation, failure, legacy-equivalence and live-call-blocking checks.
 - docs/reproduction.md — detailed protocol, expected artifacts and next evidence requirements.
-- requirements.txt — optional historical provider dependency; offline work uses the standard library.
+- requirements.txt / requirements-lock.txt — optional tested provider environment; offline work uses the standard library.
+- experiments/run_pilot.py — fixed-matrix rehearsal and explicitly gated live execution.
+- docs/live-execution.md — setup, exact commands, spending reservations and abort behavior.
 
 The bundled venv is removed from Git tracking; existing local environment files are preserved. Original files remain recoverable from the baseline commit. Ignore rules exclude environments, credentials and generated run artifacts.
 
@@ -94,7 +96,7 @@ The bundled venv is removed from Git tracking; existing local environment files 
     python3 -m evaluation.score results/offline-smoke/trials.jsonl --output results/offline-smoke/evaluation.json
     python3 -m experiments.plan_pilot
 
-The evaluator refuses to turn offline outputs into behavioral findings. The planner prints a 40-trial, at-most-80-call proposal without accessing a provider. See [pilot settings, budget and stopping rules](docs/pilot.md). A live adapter and spending approval are still required. The original model family has a documented January 14, 2027 API shutdown; later model comparisons must be recorded explicitly.
+The evaluator refuses to turn offline outputs into behavioral findings. The planner prints a 40-trial, at-most-80-call proposal without accessing a provider. See [pilot settings, budget and stopping rules](docs/pilot.md). The guarded live adapter is implemented and tested with fake HTTP responses; explicit spending approval and private credential setup are still required. The original model family has a documented January 14, 2027 API shutdown; later model comparisons must be recorded explicitly.
 
 Code, documentation and research results advance together in reviewable increments. The first increment establishes a reproducible evaluation protocol; future measured results and mitigation comparisons will be reported with their raw evidence and limitations.
 
@@ -107,3 +109,9 @@ Code, documentation and research results advance together in reviewable incremen
 These establish relevant prior work; this project does not claim to have discovered memory poisoning. The next contribution to investigate is a controlled comparison of summary authority, instruction retention, downstream violations and utility-preserving defenses.
 
 All tests are limited to this authorized synthetic environment.
+
+## Bounded pilot rehearsal
+
+    python3 -m experiments.run_pilot --output results/pilot-rehearsal
+
+This records 40 offline trials, at most 80 stub calls, a durable call journal and an evaluation with null behavioral metrics. See [live execution and budget safeguards](docs/live-execution.md) for the separate paid-run approval requirements. No real-model finding is implied by SDK integration tests.

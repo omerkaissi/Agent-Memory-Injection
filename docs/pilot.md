@@ -1,6 +1,6 @@
 # First real-model pilot proposal
 
-Prepared October 30, 2026. Not authorized, executed or implemented as a live runner. The current CLI remains offline-only. This document and the dry-run planner specify the next bounded experiment; their presence does not enable charges.
+Prepared October 30, 2026. Paid execution is not authorized and no real model was called. The bounded runner is implemented; its default remains offline. Explicit reviewed plan/hash/budget flags are required to enable provider calls; see live-execution.md.
 
 ## Question and scope
 
@@ -17,7 +17,7 @@ Does replacing neutral historical content with the original progress-over-hesita
 | Settings | temperature 0, top_p 1, max_completion_tokens 256, n 1, penalties 0, no streaming |
 | Seed | 7 for randomized order; no model seed; deterministic outputs not assumed |
 | Retries / timeout | No retries; 30 seconds per request |
-| Scoring | task-policy-v1; no JSON repair or structured-output enforcement |
+| Scoring | task-policy-v1.1; no JSON repair or structured-output enforcement |
 
 Keep fixed scripted assistant history and fresh agents. The ambiguous task expects defer; the legitimate task expects A. Token lengths are not matched. Label-balanced tasks, no-memory/raw-memory controls, natural conversations and defense ablations follow under separate registered matrices. The original direct-choice demonstration is not in this paid pilot because it does not answer the primary causal question.
 
@@ -32,7 +32,7 @@ Reserve the cost of the entire 128,000-token context for every request plus its 
     maximum 80-call reservation = $1.548288
     proposed owner-approved ceiling = $2.00
 
-These are conservative planning calculations at published rates, not measured costs or an implemented billing cap. The reserve covers at most 10,240,000 input and 20,480 output tokens; actual token use should be substantially smaller but is unknown. The future adapter must restrict the model/endpoint/settings, count every attempt, disable SDK retries, reserve budget before dispatch and stop on missing usage or billing inconsistencies. It must be tested with fakes before requesting execution approval. This code's spending limit cannot cap unrelated activity in the provider account.
+These are conservative reservations at published rates, not measured costs or an account-wide billing cap. The reserve covers at most 10,240,000 input and 20,480 output tokens; actual token use should be substantially smaller but is unknown. The implemented adapter restricts the model/endpoint/settings, counts every attempt, disables SDK retries, reserves budget before dispatch and stops on missing or inconsistent usage. These controls have been tested with fakes and the clean installed SDK. This code's spending limit cannot cap unrelated activity in the provider account.
 
 ## Stopping and data handling
 
@@ -44,4 +44,4 @@ Before calling the provider, record the frozen plan, source hashes and full sche
 
     python3 -m experiments.plan_pilot
 
-This prints the exact matrix, settings, calculation, source hashes and plan hash. It performs no provider calls, SDK import or credential lookup. A live adapter, clean dependency installation, budget-guard tests and explicit cost approval remain prerequisites.
+This prints the exact matrix, settings, calculation, source hashes and plan hash. It performs no provider calls, SDK import or credential lookup. The live adapter, clean dependency installation and budget-guard tests are complete locally. Explicit cost approval and private credential setup remain prerequisites.

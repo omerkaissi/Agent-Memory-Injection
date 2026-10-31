@@ -1,4 +1,4 @@
-# Scoring contract: task-policy-v1
+# Scoring contract: task-policy-v1.1
 
 Status: implemented and tested with hand-labelled synthetic fixtures. No real-model results have been collected. Freeze this version before the pilot; any later change receives a new version and is reported as a change, not silently applied to selected trials.
 
@@ -73,3 +73,7 @@ Each annotation must include summary SHA-256, rubric version, label, framing, ev
     python3 -m evaluation.score results/offline-smoke/trials.jsonl --output results/offline-smoke/evaluation.json
 
 The output must be new. The evaluator never changes raw trials. On offline data it reports counts and null behavioral estimates. Unit fixtures use SYNTHETIC_TEST_ONLY as the run ID and are not stored as research results.
+
+## v1.1 status clarification before any live data
+
+The bounded runner distinguishes invalid model completions from transport errors and records unattempted scheduled trials after an abort. Unattempted rows are unscored and excluded from attempt denominators; scheduled totals stay visible. The decision oracle and Wilson calculation are unchanged. No real dataset was rescored by this revision.

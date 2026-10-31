@@ -169,7 +169,7 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(plan["max_provider_calls"], 80)
         self.assertEqual(plan["budget"]["conservative_run_reserve_usd"], "1.548288")
         self.assertEqual(plan["budget"]["total_output_token_cap"], 20480)
-        self.assertFalse(plan["live_execution_implemented"])
+        self.assertTrue(plan["live_execution_implemented"])
         fingerprint = plan.pop("plan_sha256")
         self.assertEqual(fingerprint, digest(plan))
 

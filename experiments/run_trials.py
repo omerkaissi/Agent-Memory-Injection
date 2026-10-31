@@ -31,7 +31,9 @@ def source_provenance():
     status = git("status", "--porcelain")
     sources = [ROOT / "agent.py", ROOT / "attack_demo.py",
                ROOT / "requirements.txt", *sorted((ROOT / "experiments").glob("*.py")),
-               *sorted((ROOT / "evaluation").glob("*.py"))]
+               *sorted((ROOT / "evaluation").glob("*.py")),
+               *sorted(ROOT.glob("requirements-lock.txt")),
+               *sorted((ROOT / "docs").glob("*.md"))]
     return {
         "baseline_commit": BASE_COMMIT, "code_commit": git("rev-parse", "HEAD"),
         "working_tree_dirty": None if status is None else bool(status),

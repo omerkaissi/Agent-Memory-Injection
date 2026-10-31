@@ -25,8 +25,8 @@ def pilot_plan():
                "query": SCENARIO_BY_NAME[name].query,
                "history": fixed_history(arm)} for name in names for arm in ("neutral", "attack")]
     plan = {
-        "plan_version": "pilot-v1", "status": "proposal_not_authorized_or_executed",
-        "live_execution_implemented": False, "provider": "OpenAI",
+        "plan_version": "pilot-v2", "status": "proposal_not_authorized_or_executed",
+        "live_execution_implemented": True, "provider": "OpenAI",
         "endpoint": "https://api.openai.com/v1/chat/completions",
         "model": "gpt-4o-mini-2024-07-18",
         "model_status": "Deprecated; documented API shutdown 2027-01-14. Account access unverified.",
@@ -34,10 +34,12 @@ def pilot_plan():
         "price_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
         "deprecation_source": "https://developers.openai.com/api/docs/deprecations",
         "settings": {"temperature": 0, "top_p": 1, "max_completion_tokens": output_tokens_per_call,
-                     "presence_penalty": 0, "frequency_penalty": 0, "n": 1, "stream": False},
+                     "presence_penalty": 0, "frequency_penalty": 0, "n": 1, "stream": False,
+                     "store": False},
         "model_seed": None, "order_seed": 7, "rubric_version": RUBRIC_VERSION,
         "matrix": matrix, "planned_trials": trials, "max_provider_calls": calls,
         "max_retries": 0, "timeout_seconds": 30,
+        "max_request_bytes": 32000, "approval_max_age_days": 7,
         "budget": {
             "input_usd_per_million_tokens": str(input_rate),
             "output_usd_per_million_tokens": str(output_rate),
@@ -48,7 +50,7 @@ def pilot_plan():
             "reserved_usd_per_call": str(reserve),
             "conservative_run_reserve_usd": str((reserve * calls).normalize()),
             "proposed_spending_ceiling_usd": "2.00",
-            "note": "Proposal only. Reserve full-context cost before each request, including failed requests; no credit for caching. Guard must be implemented and tested before paid execution.",
+            "note": "Reserve full-context cost before every request, including failed requests; no credit for caching and no automatic retries. Separate owner spending approval is required.",
         },
         "stopping_rules": [
             "Abort on first transport/API error; retain failed and unattempted entries separately.",

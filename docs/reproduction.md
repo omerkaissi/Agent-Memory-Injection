@@ -4,7 +4,7 @@
 
 Offline code requires Python 3.9+ and the standard library. Python 3.9.6 is the tested interpreter. The historical venv has been removed from Git tracking while preserving existing local files. It contains platform-specific paths and packages; nothing in it was installed or executed.
 
-The optional OpenAI SDK is pinned to 2.15.0 because its package metadata is present in the original repository. This is provenance, not a claim that this pin is current or that clean live installation has been tested.
+The optional OpenAI SDK remains pinned to 2.15.0, matching original package metadata. Its full dependency set is pinned in requirements-lock.txt, clean-installed on Python 3.9.6, and tested through an in-memory HTTP transport. Authenticated model access has not been tested.
 
 ## Preserve the baseline
 
@@ -57,7 +57,7 @@ No demographic, private or external system data is used. There are no external t
 
 ## Deferred live stage
 
-The [scoring rubric](scoring.md) and [pilot proposal](pilot.md) now specify the model/provider, generation parameters, matrix, retries/timeouts, limits and cost calculation. The planner is offline and live execution remains disabled. Implement and offline-test the budget guard and adapter, verify a clean dependency install, then obtain explicit spending approval before collection. Recheck current availability/pricing if execution occurs later.
+The [scoring rubric](scoring.md) and [pilot proposal](pilot.md) now specify the model/provider, generation parameters, matrix, retries/timeouts, limits and cost calculation. The planner remains offline. A separate gated pilot runner, reservation guard and clean SDK environment are implemented and verified with fakes. Obtain explicit spending approval and configure a private API key before collection; follow live-execution.md. Recheck current availability/pricing if execution occurs later.
 
 Planned metrics: summary directive persistence; trusted-policy violations; legitimate-task success; failed/invalid attempts; cost and latency. Use actual denominators and uncertainty intervals. Do not treat a missing trigger word as semantic removal, or malformed JSON as an automatically safe result.
 
