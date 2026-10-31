@@ -120,3 +120,7 @@ Original source remains at `fcdf5c74ed35d71e32113155f44302139cac2848`. The first
 Complete human annotation of the existing summaries first. Then compare structured, origin-labeled factual memory with the current free-text summary, measuring fact retention and legitimate-task performance alongside adversarial outcomes. Later vary the role/provenance of identical summaries to isolate authority effects. Predeclare variants and retain failures and negative outcomes.
 
 The current evidence supports a narrow conclusion: an instruction-preserving memory pipeline can retain adversarial guidance without the tested responder adopting its behavioral goal, while useful facts can occasionally be lost. Both outcomes belong in the research record.
+
+## Published source mapping
+
+Original study commit IDs identify local snapshots. The [source-provenance table](docs/source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. Raw study records remain private.

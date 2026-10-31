@@ -184,3 +184,7 @@ The seven raw files, separate analysis and blank human review packet remain priv
     python3 -S -m evaluation.audit_memory results/memory-live-001 --expected-plan-sha256 9500439baf60d5d1681bcf116371715a37299210fcc04c98ca0975ee7162b8d9 --output results/memory-live-001-reaudit.json
 
 This offline audit verifies the schedule, exact contexts, 840 journal records, 420 unique request IDs, token/cost arithmetic and unchanged scoring. It does not independently authenticate provider records. Four synthetic corruption/preservation tests bring the full passing suite to 94 tests. No additional API calls are required for audit or human annotation.
+
+## Published source mapping
+
+Original study commit IDs identify local snapshots. The [source-provenance table](docs/source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. Raw study records remain private.

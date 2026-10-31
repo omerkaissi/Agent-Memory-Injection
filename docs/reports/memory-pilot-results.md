@@ -87,3 +87,7 @@ Any new paid experiment needs a frozen scope and fresh approval. The approved se
 ## Reproducibility links
 
 The executed source is preserved at commit `9cdb719199e66e94bde2531dccae65959962af55`; the later audit/documentation increment is `746d0e4d181934c550014fb802855fbd71764eff`. See the [evidence inventory](../evidence-access.md), [registered scoring](../memory-scoring.md), [audit](../../evaluation/audit_memory.py) and [main report](../../writeup.md). Human review remains pending, and publishing this evidence does not authorize further paid collection.
+
+## Published source mapping
+
+Original study commit IDs identify local snapshots. The [source-provenance table](../source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. Raw study records remain private.
