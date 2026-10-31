@@ -54,10 +54,10 @@ The offline audit matched all 40 rows to the registered randomized schedule, che
 
 The executed source matched every registered file hash before documentation edits and is retained in commit 96e81556069c3641d9abe4eed201447cb6c73884. This commit was made after execution to preserve identical source bytes; the run correctly records the earlier HEAD plus dirty source hashes. The subsequent audit tool and tests were added after collection and did not change the frozen decision scorer. All 52 software tests passed; the five new audit tests use synthetic records, not these model results.
 
-If you have the original private run directory at `results/pilot-live-001`, rerun analysis without credentials or charges, using new output filenames. A fresh public clone does not include these records:
+The [first-pilot archive](../../data/pilot-001-evidence.zip) contains the original records. Follow [verification and extraction](../../data/README.md), then rerun analysis without credentials or charges, using new output filenames:
 
-    python3 -S -m evaluation.score results/pilot-live-001/trials.jsonl --output results/pilot-live-001-rescored.json
-    python3 -S -m evaluation.audit_pilot results/pilot-live-001 --expected-plan-sha256 4add3443a73a8e2e8944b244b3c865153f358824ffc28738fdc8026c514a00da --output results/pilot-live-001-reaudit.json
+    python3 -S -m evaluation.score results/published-evidence/pilot/pilot-live-001/trials.jsonl --output results/pilot-live-001-rescored.json
+    python3 -S -m evaluation.audit_pilot results/published-evidence/pilot/pilot-live-001 --expected-plan-sha256 4add3443a73a8e2e8944b244b3c865153f358824ffc28738fdc8026c514a00da --output results/pilot-live-001-reaudit.json
 
 Original artifacts: plan.json, manifest.json, schedule.json, calls.jsonl, trials.jsonl, summary.json and evaluation.json. Derived audit, provisional annotations, human review packet and mapping are stored outside that original run directory. The owner-approved 40-trial run is complete; further paid experiments require a new defined scope and approval. Do not reuse the old approval to rerun this dataset.
 
@@ -69,8 +69,8 @@ The original demo's final instruction directly requests a choice, so its qualita
 
 Historical recommendation after this pilot (the next study now implements the balanced tasks and exposure controls): extend the registered scenario schema to include label-balanced choices (A and B), a task that actually requires remembering a benign fact, and no-memory controls with explicit expected outcomes. Then add raw-history and fixed-summary role/provenance conditions so memory retention, authority assignment, and utility can be separated. Any attack variants should be fixed before collection; report every variant and failure instead of searching until a success is found. Include predefined scorer fixtures as software controls, without calling them real-model attack successes. Freeze the next matrix and cost estimate before seeking permission for additional paid calls.
 
-This report is published with the [current technical report](../../writeup.md) and [evidence inventory](../evidence-access.md). Raw records and review materials remain private; public code alone cannot independently substantiate the reported model outputs. The subsequent memory-dependent study addresses some design limitations; see its [separate report](memory-pilot-results.md). The studies use different policies and should not be pooled as one condition.
+This report is published with the [current technical report](../../writeup.md) and [evidence inventory](../evidence-access.md). The [raw records and review materials](../../data/README.md) are now public as byte-identical frozen archives. Readers can re-score these saved outputs; internal consistency is not independent provider authentication. The subsequent memory-dependent study addresses some design limitations; see its [separate report](memory-pilot-results.md). The studies use different policies and should not be pooled as one condition.
 
 ## Published source mapping
 
-Original study commit IDs identify local snapshots. The [source-provenance table](../source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. Raw study records remain private.
+Original study commit IDs identify local snapshots. The [source-provenance table](../source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. The [frozen evidence archives](../../data/README.md) are public with explicit owner approval.

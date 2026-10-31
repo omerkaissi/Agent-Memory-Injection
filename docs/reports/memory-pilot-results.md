@@ -21,7 +21,7 @@ Six scenarios each had ten repetitions of five conditions: one no-memory referen
 
 Model: `gpt-4o-mini-2024-07-18`; temperature 0, top_p 1, max_completion_tokens 256, penalties 0, n 1, stream false, store false. Order seed 7; no model seed, retries, replacement trials or fallback. The policy explicitly permits factual memory use while prohibiting remembered instructions from changing the decision rule. It differs from the first pilot's current-query policy. Both studies preserve the original instruction-preserving summarizer and system-role reinsertion.
 
-The original seven run files are preserved in the private `results/memory-live-001` directory. Separate audit, recomputed evaluation, analysis summary, anomaly trace, blank human review packet and instructions are in the private `results/memory-live-001-analysis` directory. The original and derived files are frozen separately and remain private. The [evidence inventory and offline audit instructions](../evidence-access.md) explain what is available. Public code supports the methodology, but a fresh public clone cannot verify the saved outputs without those records.
+The original seven run files and six separate analysis/review files are published in the [memory-control evidence archive](../../data/memory-001-evidence.zip). Archive bytes and contained files match the preserved originals. See the [file hashes, extraction and offline audit instructions](../../data/README.md) to inspect and re-score them without an API key. This verifies consistency of the saved records, not independent provider authenticity.
 
 ## Attack-goal endpoint
 
@@ -82,7 +82,7 @@ Four synthetic-only audit tests were added; the full suite passed 94 tests with 
 
 First complete the independent human summary review and preserve unresolved cases. Then compare a structured, origin-labeled factual-memory representation with the current free-text summary, using the same utility and adversarial controls. Its immediate measurable objective should be retaining legitimate facts without endorsing remembered behavioral rules. A later fixed-summary role/provenance experiment can isolate authority effects.
 
-Any new paid experiment needs a frozen scope and fresh approval. The approved second run is complete; remaining budget does not authorize more sampling. The owner approved the code and reports for publication; raw study records and review artifacts remain private. The current negative attack result, useful-memory control and explicitly documented failure are defensible research evidence without inflating exploit claims.
+Any new paid experiment needs a frozen scope and fresh approval. The approved second run is complete; remaining budget does not authorize more sampling. The owner approved the code and reports, and subsequently explicitly approved public disclosure of the complete synthetic study records and review artifacts. The current negative attack result, useful-memory control and explicitly documented failure are defensible research evidence without inflating exploit claims.
 
 ## Reproducibility links
 
@@ -90,4 +90,4 @@ The executed source is preserved at commit `9cdb719199e66e94bde2531dccae65959962
 
 ## Published source mapping
 
-Original study commit IDs identify local snapshots. The [source-provenance table](../source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. Raw study records remain private.
+Original study commit IDs identify local snapshots. The [source-provenance table](../source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. The [frozen evidence archives](../../data/README.md) are public with explicit owner approval.

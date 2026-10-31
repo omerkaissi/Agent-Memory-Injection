@@ -1,0 +1,130 @@
+{
+  "format": "frozen-evidence-archives-v1",
+  "collected_date": "2026-10-30",
+  "timezone": "America/Los_Angeles",
+  "archives": [
+    {
+      "path": "data/pilot-001-evidence.zip",
+      "sha256": "f6884f86a82c1337154b7a8086e16ed5fe6080cfc33f50a051d35a589f236c6c",
+      "bytes": 36297,
+      "extraction_subdirectory": "pilot",
+      "run_id": "c251a61999e8412ba945b13cf3062105",
+      "files": {
+        "pilot-live-001/calls.jsonl": {
+          "sha256": "0f3e238e2bc14b66103f4d80b28a6658065a516e0ecb1195b647c4dcab07646f",
+          "bytes": 165818
+        },
+        "pilot-live-001/evaluation.json": {
+          "sha256": "bb30dae1dcf4446fc840b9245e41ea2d8ec6c0aca23dab1c8a77d8ec93c6865b",
+          "bytes": 24919
+        },
+        "pilot-live-001/manifest.json": {
+          "sha256": "dfe25a4e9ff41690c0a6d2399d9e9ceca855ac46ea31dcb4091582fb14b821ad",
+          "bytes": 543
+        },
+        "pilot-live-001/plan.json": {
+          "sha256": "17ea5cbb7893669fb5bc580ba49f26862f017d15509d274c2e8c206cef02d51d",
+          "bytes": 11183
+        },
+        "pilot-live-001/schedule.json": {
+          "sha256": "4d2a6d4c4e9997f9a066b2567b30c51de6d179d5a8a5e8ce468b63816553aa0a",
+          "bytes": 73635
+        },
+        "pilot-live-001/summary.json": {
+          "sha256": "d9b1a11de27bf8b36089c1eb726c1dfcfdeea7518183aabea69003a05128e102",
+          "bytes": 768
+        },
+        "pilot-live-001/trials.jsonl": {
+          "sha256": "ca5334cff95d346524b8045cea5ed1851be5f6b0ddd2c82278fdd6a453161a58",
+          "bytes": 358634
+        },
+        "pilot-live-001-analysis/REVIEW_INSTRUCTIONS.md": {
+          "sha256": "e8d778c679e3e30568e326cc0d2e89d351d5b6af58381844316e903868389316",
+          "bytes": 1407
+        },
+        "pilot-live-001-analysis/human_review_packet.json": {
+          "sha256": "a90b5f30d2cc25aea462dda0c62d2af5c9a052de96483761aed90ea0d42bef2b",
+          "bytes": 7117
+        },
+        "pilot-live-001-analysis/provisional_ai_annotations.json": {
+          "sha256": "77a563d839d46eecf4a02fba81776708cf9869437fd013a559a7a3cad1909ebc",
+          "bytes": 8906
+        },
+        "pilot-live-001-analysis/provisional_persistence_counts.json": {
+          "sha256": "73c4b9869506b22e14188cfa8ae047ba3ec3cd44a5612f9f2a0e821c98c25db4",
+          "bytes": 427
+        },
+        "pilot-live-001-analysis/review_mapping.json": {
+          "sha256": "e9a760fb9da0381a7859c871ec521c6e7ec66bae593382475caf2e14534d01b6",
+          "bytes": 3563
+        },
+        "pilot-live-001-analysis/verification.json": {
+          "sha256": "65ead3ab2b25108f48d11cd71de00ee577ad0fe4af2eaabbd302c0135ee786bb",
+          "bytes": 6605
+        }
+      }
+    },
+    {
+      "path": "data/memory-001-evidence.zip",
+      "sha256": "a58f3afe189bd429b36015a63953ad4bb12ad9dee4b207c224e41c927d3fc275",
+      "bytes": 164555,
+      "extraction_subdirectory": "memory",
+      "run_id": "4a87d24725b24432a497a4607f9ac617",
+      "files": {
+        "memory-live-001/calls.jsonl": {
+          "sha256": "ec9e9f98db4e94429a497af9e14875f167941cbac7e9ce156a8ff1bef248afb3",
+          "bytes": 906451
+        },
+        "memory-live-001/evaluation.json": {
+          "sha256": "b715d21568ef3abce12892501a7c5b9130399f66156edafa0a193817cf0db237",
+          "bytes": 252682
+        },
+        "memory-live-001/manifest.json": {
+          "sha256": "593fd32a7658072c66dc0e90fd29c1d07210a48445e8cb8c1e37beab14a97c42",
+          "bytes": 478
+        },
+        "memory-live-001/plan.json": {
+          "sha256": "e9c0ec52452bbddb10f3d19203c3bb7be02fe944435dd4dff8e248525fb0d7c1",
+          "bytes": 123162
+        },
+        "memory-live-001/schedule.json": {
+          "sha256": "4892b382a730a79e91d71ff30b2deb6d15021a44ada264f140b364a592dbabe2",
+          "bytes": 89173
+        },
+        "memory-live-001/summary.json": {
+          "sha256": "3eb04c9bfe25e15422ca9c5db6187c3eedd3afb3472e86ec66d711fe6e64ec78",
+          "bytes": 774
+        },
+        "memory-live-001/trials.jsonl": {
+          "sha256": "2f8ab63c21a482388c3366d7b0d92ab376db08a4dfd4ddfcbead22b30ec2b393",
+          "bytes": 1886291
+        },
+        "analysis/REVIEW_INSTRUCTIONS.md": {
+          "sha256": "4c5f89a24c546b7b46705209c71abdc899e08cccbc3f6cc8208ddd0a7c4b65ad",
+          "bytes": 1018
+        },
+        "analysis/analysis_summary.json": {
+          "sha256": "397388498cf529c87ceec56511eff9842179f02c1e0ba25ab297c6d3b592fa55",
+          "bytes": 6741
+        },
+        "analysis/anomaly_trace.json": {
+          "sha256": "0061f30d427fcd779e05f3bf5256cd1b461bcae76a18eae4ef04a96cf7c5bd5d",
+          "bytes": 1651
+        },
+        "analysis/audit.json": {
+          "sha256": "4e6aa06dab22af523cfbedf24bac0f1b2e8964e379497672a709edb769ed1476",
+          "bytes": 6709
+        },
+        "analysis/evaluation.json": {
+          "sha256": "b715d21568ef3abce12892501a7c5b9130399f66156edafa0a193817cf0db237",
+          "bytes": 252682
+        },
+        "analysis/human_review_packet.json": {
+          "sha256": "b05c611617fb43c4d07058c61727a969bc6d8fc8abbd0afd3ec7cf835633bf01",
+          "bytes": 22380
+        }
+      }
+    }
+  ],
+  "human_review": "Pending; AI observations remain explicitly provisional/nonblind."
+}

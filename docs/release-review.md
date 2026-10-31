@@ -1,3 +1,17 @@
+# Third public update — approved synthetic evidence disclosure
+
+On October 30, 2026, the owner replied “yeah thats fine with me” to the explicit request to publish raw synthetic experiment records including complete prompts, model outputs, timestamps, usage and provider request identifiers. This approval resolves the earlier data-disclosure boundary. No additional paid experiment is authorized.
+
+## Scope and verification
+
+Publish the two original frozen evidence ZIP archives, covering 26 raw and derived files, with archive/per-file SHA-256 hashes and offline extraction/audit/rescoring instructions. All archive bytes and entries match the preserved originals; CRC checks passed. A bounded scan of the 26 evidence files found no credential patterns, email addresses or local home paths. Such scans are not a universal guarantee of secret absence. No credential validation or provider request occurred.
+
+Update the README, reports and evidence-availability notes to link the public records. Keep source-provenance mapping, measured scores and human-review gaps unchanged. Do not claim that data publication completes annotation or mitigation testing. Prior release reviews below are historical; their private-data statements no longer describe the current release.
+
+---
+
+## Historical second-release review
+
 # Second public update — code and research reports
 
 Owner approved publishing the accumulated code and writing on October 30, 2026. This release keeps raw study records, model-call journals, annotation packets and project/application documents private. No additional paid run is authorized.

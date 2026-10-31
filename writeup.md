@@ -109,7 +109,7 @@ This project examines a small sequential summarization pipeline with controlled 
 
 ## Reproducibility and cost
 
-The raw runs, derived analyses, blank review packets and hashes are preserved privately. They are not included in this public release. See [evidence availability](docs/evidence-access.md) for the artifact inventory, limitations and offline audit commands for readers who obtain the records. Public code supports running new experiments; it does not by itself let readers independently verify these saved model outputs. Offline auditing of the saved records requires Python 3.9+ and no key or paid call. The 94-test software suite passed before this documentation/data release; synthetic tests are not model observations. Audits check internal consistency, not independent provider authenticity.
+The raw runs, derived analyses and blank review packets are published as [two frozen evidence archives](data/README.md), with SHA-256 hashes for every file. The archive bytes and all 26 entries match the preserved originals. Readers can download, extract, audit and re-score the saved model outputs using Python 3.9+ without an API key or paid call. These checks verify record consistency, not independently authenticated provider responses. The 94-test software suite passed before this documentation/data release; synthetic tests are not model observations. Audits check internal consistency, not independent provider authenticity.
 
 The first study used 11,883 input and 2,803 output tokens, estimated at $0.00346425. The second used 77,156 input and 9,917 output tokens, estimated at $0.01752360. These are estimates at registered prices, not account billing statements. Conservative reservations were spending bounds, not measured charges.
 
@@ -123,4 +123,4 @@ The current evidence supports a narrow conclusion: an instruction-preserving mem
 
 ## Published source mapping
 
-Original study commit IDs identify local snapshots. The [source-provenance table](docs/source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. Raw study records remain private.
+Original study commit IDs identify local snapshots. The [source-provenance table](docs/source-provenance.md) links their byte-identical public counterparts; publication commit metadata differ, while the executed source files are preserved. The [frozen evidence archives](data/README.md) are now public with explicit owner approval.

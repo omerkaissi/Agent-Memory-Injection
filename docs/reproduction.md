@@ -69,7 +69,7 @@ A five-rule heuristic scan examined all 1,982 tracked blobs at the one reachable
 
 ## Saved first-pilot analysis
 
-The owner executed the first approved live pilot on October 30, 2026. It is complete; do not rerun the old command under its consumed approval. Keep results/pilot-live-001 unchanged. Use evaluation.score or evaluation.audit_pilot with new output paths for offline reanalysis. Raw records and derived analyses remain private; see [evidence availability and offline audit instructions](evidence-access.md). The schema/audit tests use synthetic fixtures; they do not count as additional empirical trials. See README for measured outcomes and limits.
+The owner executed the first approved live pilot on October 30, 2026. It is complete; do not rerun the old command under its consumed approval. Keep results/pilot-live-001 unchanged. Use evaluation.score or evaluation.audit_pilot with new output paths for offline reanalysis. Both runs and derived analyses are published in frozen ZIP archives; see [downloads, checksums, extraction and offline reanalysis](../data/README.md). The schema/audit tests use synthetic fixtures; they do not count as additional empirical trials. See README for measured outcomes and limits.
 
 ## Separate memory-control rehearsal
 

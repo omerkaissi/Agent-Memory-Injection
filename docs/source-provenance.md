@@ -2,7 +2,7 @@
 
 The study records retain the original local commit identifiers and file hashes. Public publication used the connected GitHub API after local Git authentication failed. GitHub assigned new commit IDs because publication metadata changed; every uploaded source tree was checked against the original Git tree hash. The original study records and local commits were not rewritten.
 
-A Git tree hash commits to file paths, modes and blob contents. Matching trees establish the same source snapshot, not identical commit metadata or independent authentication of model outputs. The original public repository history remains the ancestor of this release. Raw study records remain private; see [evidence availability](evidence-access.md).
+A Git tree hash commits to file paths, modes and blob contents. Matching trees establish the same source snapshot, not identical commit metadata or independent authentication of model outputs. The original public repository history remains the ancestor of this release. The original frozen study records are now public; see [evidence downloads and offline reanalysis](../data/README.md).
 
 | Local snapshot | Public counterpart | Identical Git tree |
 |---|---|---|
