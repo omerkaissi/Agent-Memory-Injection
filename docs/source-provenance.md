@@ -14,3 +14,8 @@ A Git tree hash commits to file paths, modes and blob contents. Matching trees e
 | `011b0ed8377a85aaed55bb98b3d6702c65c0a46f` | [9ede0e8](https://github.com/omerkaissi/Agent-Memory-Injection/commit/9ede0e88f5c4f2be8db12581dbb5a2cc6157e61a) | `c8958b97bbd5a984159b5acd8ea03a1fc5b2c571` |
 
 The first study's executed source bytes were retained in local snapshot `96e81556069c3641d9abe4eed201447cb6c73884` after its run; its original dirty-source metadata remains intact. The second executed local commit was `9cdb719199e66e94bde2531dccae65959962af55`. Use their public counterparts above to inspect those source snapshots. Later commits add audit tools and reports; no post-collection scorer changes are implied by this mapping.
+
+
+## Defense study executed source
+
+The third run records public commit `ec3d36821b3243fb2e78aac6f696889368a0982f` with `working_tree_dirty: true`. That commit alone does not contain the new defense implementation. All 44 registered source/test files were matched to the plan's SHA-256 hashes and preserved byte-for-byte in `analysis/executed-source.zip` within the [defense evidence bundle](../data/README.md#defense-comparison-evidence), before post-run documentation edits. Compare the archive contents against `defense-live-001/plan.json`; the nested archive hash appears in the evidence manifest. The original run metadata is unchanged. This owner-approved release includes that source snapshot; no executed Git commit is invented.

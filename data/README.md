@@ -1,6 +1,6 @@
-# Published synthetic experiment records
+# Synthetic experiment records and offline reanalysis
 
-The owner approved public disclosure of these complete synthetic experiment records: prompts, model outputs, timestamps, usage and provider request identifiers. The archives also include separate analyses and blank human-review packets. No API key or private application material is included.
+The owner approved public disclosure of the first two complete synthetic experiment records: prompts, model outputs, timestamps, usage and provider request identifiers. Those archives also include separate analyses and blank human-review packets. The owner also explicitly approved the third defense bundle, included in this release and described below. No API key or private application material is included.
 
 The ZIP files are byte-identical to the original frozen evidence archives. Their 26 entries match the preserved raw/derived files exactly. The directory layout inside each archive is unchanged. These are recorded model outputs, not additional model trials or independently authenticated provider attestations.
 
@@ -57,6 +57,66 @@ Expected audit totals are 40 trials / 80 recorded calls and 300 trials / 420 rec
 
 Each raw run contains `plan.json`, `manifest.json`, `schedule.json`, `calls.jsonl`, `trials.jsonl`, `summary.json` and `evaluation.json`. The first archive's analysis folder is `pilot-live-001-analysis`; the second's is `analysis`. Historical instructions inside those preserved folders may refer to the owner's original `results/` paths; use the extracted paths above for this release.
 
-The first review packet has 11 unique summary texts; the second has 35. Human annotation is still pending. Provisional AI labels and the anomaly trace are nonblind observations, not independent human validation. Looking at those observations before annotating affects blinding and should be disclosed. Do not merge the two studies as one condition: their tasks and policies differ.
+The first review packet has 11 unique summary texts; the second has 35. Omer reports completing the earlier review; item-level labels remain unreconciled in the retained packets. See [review status](../docs/review-status.md). Provisional AI labels and the anomaly trace are nonblind observations, not independent human validation. Looking at those observations before annotating affects blinding and should be disclosed. Do not merge the two studies as one condition: their tasks and policies differ.
 
-Read the [main report](../writeup.md), [first-pilot report](../docs/reports/pilot-results.md), [memory-control report](../docs/reports/memory-pilot-results.md), and [source mapping](../docs/source-provenance.md). The results remain negative for the registered attack-goal endpoints; one summary lost useful facts. No mitigation efficacy has been measured, and this data release authorizes no further paid experiment.
+Read the [main report](../writeup.md), [first-pilot report](../docs/reports/pilot-results.md), [memory-control report](../docs/reports/memory-pilot-results.md), and [source mapping](../docs/source-provenance.md). The results remain negative for the registered attack-goal endpoints; one summary lost useful facts. The later [defense comparison](../docs/reports/defense-results.md) preserved measured utility but did not establish a security advantage. Data release authorizes no further paid experiment.
+
+## Defense comparison evidence
+
+Included in this owner-approved release. The [defense archive](defense-001-evidence.zip) contains six frozen raw run files and seven separate analysis/source/test artifacts. The [defense manifest](defense-001-manifest.json) records archive and per-file hashes. The nested `analysis/executed-source.zip` contains all 44 registered source/test files, including the pre-run protocol documentation. Their original dirty-tree provenance is retained.
+
+This run completed 240 valid trials / 480 recorded provider calls. Both formats recovered 120/120 answers and had 0/20 designated attack successes. The comparison does not establish attack reduction. Estimated usage was $0.02132775; the $10 cap was not a charge. All paid-run approvals are consumed.
+
+From the repository root, verify and extract to a fresh directory:
+
+```bash
+python3 -S - <<'PY'
+import hashlib
+import json
+from pathlib import Path
+from zipfile import ZipFile
+
+m = json.loads(Path('data/defense-001-manifest.json').read_text())
+archive = Path(m['path'])
+assert hashlib.sha256(archive.read_bytes()).hexdigest() == m['sha256']
+target = Path('results/defense-evidence-check')
+target.mkdir(parents=True, exist_ok=False)
+with ZipFile(archive) as z:
+    assert z.testzip() is None
+    assert set(z.namelist()) == set(m['files'])
+    for name, item in m['files'].items():
+        assert not Path(name).is_absolute() and '..' not in Path(name).parts
+        assert hashlib.sha256(z.read(name)).hexdigest() == item['sha256'], name
+    z.extractall(target)
+plan = json.loads((target / 'defense-live-001/plan.json').read_text())
+source = plan['source_provenance']
+expected = {**source['source_sha256'], **source['test_sha256']}
+with ZipFile(target / 'analysis/executed-source.zip') as z:
+    assert z.testzip() is None
+    assert set(z.namelist()) == set(expected)
+    for name, digest in expected.items():
+        assert hashlib.sha256(z.read(name)).hexdigest() == digest, name
+print('Verified 13 evidence entries and 44 executed source/test files; no API calls.')
+PY
+
+python3 -S -m evaluation.audit_defense results/defense-evidence-check/defense-live-001 --output results/defense-evidence-check/reaudit.json
+python3 -S -m evaluation.score_defense results/defense-evidence-check/defense-live-001 --output results/defense-evidence-check/rescored.json
+
+python3 -S - <<'PY'
+import json
+from pathlib import Path
+p = Path('results/defense-evidence-check')
+assert json.loads((p/'rescored.json').read_text()) == json.loads((p/'defense-live-001/evaluation.json').read_text())
+assert json.loads((p/'reaudit.json').read_text()) == json.loads((p/'analysis/audit.json').read_text())
+print('Saved audit and scores reproduced without model requests.')
+PY
+```
+
+The raw files are `plan.json` (including the schedule), `manifest.json`,
+`calls.jsonl`, `trials.jsonl`, `summary.json` and `evaluation.json`. Derived
+analysis is separate. The audit checks 960 journal entries, 480 unique request
+IDs, exact contexts, decisions, usage and cost arithmetic. These are internal
+consistency checks, not independent provider authentication. Free-text semantic
+labels stay unknown, including 80 unassessed available-evidence policy labels.
+The original two archives remain byte-identical; no replacement trial or paid
+reanalysis is needed.

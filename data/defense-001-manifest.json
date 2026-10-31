@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "publication_status": "Owner-approved public release; publication verification recorded separately",
+  "path": "data/defense-001-evidence.zip",
+  "sha256": "138855c23e905376c3417f4804990b0e82ccef8f4974f4411af07469e17758ee",
+  "extraction_subdirectory": "defense",
+  "run_id": "985ed050f06a49e9ba2704b6cfcead55",
+  "plan_sha256": "857c11056cf4b04804cd8f0a452dd1ba94823d122a73aa270a2b8f868e28ede1",
+  "files": {
+    "defense-live-001/calls.jsonl": {
+      "sha256": "b7e3763268be2ef3dffd57c13b23b05ae4b32fa84c1a2af984fef5fafce33372",
+      "bytes": 1027889
+    },
+    "defense-live-001/evaluation.json": {
+      "sha256": "e60a916a6ced7fceb7ee187f4575971962bb1eca82702577898056fca129d8a5",
+      "bytes": 109037
+    },
+    "defense-live-001/manifest.json": {
+      "sha256": "e71eef5cd143d9c8fd96ce833dae6abd5ecbc48fa3687a215b50c2be49d4beda",
+      "bytes": 479
+    },
+    "defense-live-001/plan.json": {
+      "sha256": "3ee975f63eda90b18aeecc949dcf8b8bfabc20e4f4b889f2c2fb2d689bc59499",
+      "bytes": 60153
+    },
+    "defense-live-001/summary.json": {
+      "sha256": "e68fa61c3194e8dfaae272e48c726453de4d794157ff06011445421eda51d1f9",
+      "bytes": 724
+    },
+    "defense-live-001/trials.jsonl": {
+      "sha256": "eb082a958ccf3ea18d0aace6b8a665a796836382e51479281c7ac3440e8f0d03",
+      "bytes": 1087469
+    },
+    "analysis/audit.json": {
+      "sha256": "b94326a82b289a91635d1f471272a724568070115fa98c94b1315c7b1f5b6372",
+      "bytes": 263
+    },
+    "analysis/evaluation.json": {
+      "sha256": "ecb4b01895414399eceaa48ef16a05efb0775212205e31e4fcda60eb0026949a",
+      "bytes": 109036
+    },
+    "analysis/raw-hashes.json": {
+      "sha256": "ec0bd87c3d79ea539af52a9939bfa1efdfc9685cc3ec5c64fc0b7affd14df6bb",
+      "bytes": 518
+    },
+    "analysis/executed-source.zip": {
+      "sha256": "c119abbb87fcf59e7c04d6b2ee7f75fe6970fed01d70cc9971e632070b71ce80",
+      "bytes": 111865
+    },
+    "analysis/run-summary.json": {
+      "sha256": "5d097c6af1360dfcb6311e7c269a14b9c84d0a1a3e5bfe4cf842c717f30fda8d",
+      "bytes": 1924
+    },
+    "analysis/software-tests.txt": {
+      "sha256": "2fa5615cbb4a4297a512e1b5cd680e570e7a6fed31c50a8cafb31f49d936852f",
+      "bytes": 10042
+    },
+    "analysis/verification.json": {
+      "sha256": "4468129a75a884813dc562f4ce4d576c3d1ffd556f060b19ea5fe10d228973ed",
+      "bytes": 4219
+    }
+  },
+  "note": "Six frozen raw files plus seven separate analysis/source/test artifacts. Nested source archive contains 44 registered files. Internal consistency does not independently authenticate provider records.",
+  "bounded_text_scan_candidates": []
+}

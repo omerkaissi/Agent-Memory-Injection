@@ -1,5 +1,7 @@
 # Agent Memory Injection — memory-control pilot results
 
+Current status note (October 31, 2026 UTC): this is a historical study report. Omer reports completing the earlier review; item-level labels remain unreconciled in the preserved packets. See [review status](../review-status.md) and the separately collected [defense comparison](defense-results.md). Historical unknown metrics and original evidence remain unchanged.
+
 October 30, 2026, America/Los_Angeles. Researcher/project owner: Omer Kaissi. Public exploratory research report. Analysis and engineering were AI-assisted; this report is not peer reviewed and human summary annotation remains pending.
 
 ## Findings

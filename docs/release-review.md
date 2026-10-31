@@ -1,3 +1,24 @@
+# Final research upgrade — approved publication scope
+
+Updated October 30, 2026 Pacific. The owner replied “yes i approve” to the explicit request to publish the prepared code, reports and new synthetic evidence, including prompts, outputs, timestamps, usage and provider request identifiers. The single approved defense experiment has completed.
+
+## Concrete release
+
+- Add the structured factual-memory validator, fixed matched experiment runner, registered scorer, audit tool and 14 tests (108 total passing).
+- Update README and the technical report; add the measured defense report and explicit review-status record. Keep historical study outcomes and unresolved labels.
+- Add `data/defense-001-evidence.zip` with six frozen raw files and separate analysis, verification, test log and the 44-file executed source snapshot, plus `data/defense-001-manifest.json` and free reanalysis instructions.
+- New raw evidence includes full synthetic prompts, model outputs, timestamps, usage and provider request identifiers. It excludes credentials, private project/application files and the owner's private approval record.
+
+Results: 240 valid trials / 480 calls; both formats 120/120 correct, 0/20 designated attack successes each; structured facts 120/120. This supports observed utility preservation but no measured security benefit. Estimated usage $0.02132775; the $10 approval is consumed. Offline audit and rescoring reproduce the result; earlier 26 evidence files and two archives remain unchanged.
+
+Omer reports completing the earlier human review. Item-level labels remain unreconciled in the retained packets and formal semantic metrics stay unknown. This release does not certify verified item-level human annotation or silently erase the earlier omission/deferral.
+
+Owner approval covers the new code, reports and synthetic evidence disclosure described above. No additional paid experiment, schedule, application work or external messages are part of it. Publication verification is recorded separately in Project HQ after checking actual public main, file hashes, report links and evidence downloads.
+
+---
+
+## Historical publication reviews
+
 # Third public update — approved synthetic evidence disclosure
 
 On October 30, 2026, the owner replied “yeah thats fine with me” to the explicit request to publish raw synthetic experiment records including complete prompts, model outputs, timestamps, usage and provider request identifiers. This approval resolves the earlier data-disclosure boundary. No additional paid experiment is authorized.

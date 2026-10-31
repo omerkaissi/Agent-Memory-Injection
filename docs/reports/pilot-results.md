@@ -1,5 +1,7 @@
 # First live pilot: instruction retention without observed decision deviation
 
+Current status note (October 31, 2026 UTC): this is a historical study report. Omer reports completing the earlier review; item-level labels remain unreconciled in the preserved packets. See [review status](../review-status.md) and the separately collected [defense comparison](defense-results.md). Historical unknown metrics and original evidence remain unchanged.
+
 Date: October 30, 2026 (America/Los_Angeles). Researcher: Omer Kaissi. Status: public exploratory research report; not peer reviewed. Analysis and engineering were AI-assisted; no independent human annotation is claimed.
 
 ## Finding
