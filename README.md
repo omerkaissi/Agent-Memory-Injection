@@ -36,6 +36,14 @@ The held-out protocol first summarizes a fixed history, then creates a fresh age
 
 Message counts and assistant history are matched. Payload text lengths differ and are not token-matched. The controlled task policy is an experimental addition; it is not evidence that the original base prompt contained such a rule.
 
+## Next study: useful memory and exposure controls
+
+An additional **offline-only** protocol now tests request construction for balanced A/B decisions, facts available only in earlier conversation, and no-memory/raw-history/summary comparisons. Six scenarios produce 30 trials / 42 stub calls per repetition. This addresses the first pilot's limitation that its utility question supplied all facts itself. No new model findings or mitigation results are claimed.
+
+    python3 -S -m experiments.run_memory_controls --output results/memory-controls-smoke --repetitions 2
+
+See [memory-control design and interpretation](docs/memory-controls.md). This study uses a new factual-memory policy and separate records; it does not change the first pilot's scoring or raw results. Its live execution remains unavailable pending a registered scoring contract and separate paid-run approval.
+
 ## Architecture and trust boundary
 
 ~~~mermaid

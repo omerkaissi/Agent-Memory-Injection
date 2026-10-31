@@ -70,3 +70,7 @@ A five-rule heuristic scan examined all 1,982 tracked blobs at the one reachable
 ## Saved first-pilot analysis
 
 The owner executed the first approved live pilot on October 30, 2026. It is complete; do not rerun the old command under its consumed approval. Keep results/pilot-live-001 unchanged. Use evaluation.score or evaluation.audit_pilot with new output paths for offline reanalysis. The raw dataset is preserved separately and is not yet part of the public repository. The schema/audit tests use synthetic fixtures; they do not count as additional empirical trials. See README for measured outcomes and limits.
+
+## Separate memory-control rehearsal
+
+The new `experiments.run_memory_controls` module implements six balanced current-query/memory tasks and three exposure protocols. It is offline-only and uses a separate schema. Follow [memory-controls.md](memory-controls.md) for commands, expected counts, failure checks and the distinction between memory utility and policy violation. Neither this runner nor its stub outputs expand the completed pilot's paid authorization or empirical sample.
