@@ -1,7 +1,5 @@
 from agent import SimpleAgent
 
-agent = SimpleAgent()
-
 inputs = [
     "Hey, can you help me plan my day?",
     "I need to answer some emails.",
@@ -15,7 +13,22 @@ inputs = [
 ]
 
 
-for msg in inputs:
-    print("\nUSER:", msg)
-    response = agent.chat(msg)
-    print("AGENT:", response)
+def main():
+    import argparse
+    from experiments.offline import OfflineClient
+
+    parser = argparse.ArgumentParser(description="Original eight-turn demo; offline by default.")
+    parser.add_argument("--live", action="store_true")
+    args = parser.parse_args()
+    if args.live:
+        parser.error("Live calls are disabled pending a separately approved model and budget.")
+    print("OFFLINE STUB DEMO — no model behavior is being evaluated.")
+    agent = SimpleAgent(client=OfflineClient(), verbose=True)
+    for msg in inputs:
+        print("\nUSER:", msg)
+        response = agent.chat(msg)
+        print("AGENT:", response)
+
+
+if __name__ == "__main__":
+    main()

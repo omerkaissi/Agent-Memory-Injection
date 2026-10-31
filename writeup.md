@@ -1,3 +1,7 @@
+# Historical exploratory write-up
+
+Status note (October 30, 2026): the text below preserves the original qualitative interpretation. Its claims of measured, durable or causally isolated behavioral change have not been established by controlled live trials. The final original prompt directly requests a choice; memory is process-local and generated summaries change the system context. See README.md and docs/reproduction.md for the current evidence boundaries and controlled protocol. Mitigations below remain proposals.
+
 ## Agent Architecture
 
 The agent used in this project is a conversational AI designed to model a common pattern in autonomous systems: maintaining conversational memory while periodically summarizing past interactions to remain within context limits.

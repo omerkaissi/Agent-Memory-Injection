@@ -1,0 +1,4 @@
+# Offline experiments and tests require only Python's standard library.
+# Optional SDK pinned to the version observed in the original repository.
+# Live installation/execution has not been validated in this checkpoint.
+openai==2.15.0
